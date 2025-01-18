@@ -115,7 +115,14 @@ public class GetUserMediaImpl {
 
     public void screenRequestPermissions(ResultReceiver resultReceiver) {
         mediaProjectionData = null;
-        final Activity activity = stateProvider.getActivity();
+        try{
+            Intent activityIntent = new Intent(applicationContext, ScreenCapturePermissionActivity.class);
+            activityIntent.putExtra("resultReceiver", resultReceiver);
+            activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            applicationContext.startActivity(activityIntent);
+        }catch (Exception expection){}
+
+        /*final Activity activity = stateProvider.getActivity();
         if (activity == null) {
             // Activity went away, nothing we can do.
             return;
@@ -138,7 +145,7 @@ public class GetUserMediaImpl {
             transaction.commit();
         } catch (IllegalStateException ise) {
 
-        }
+        }*/
     }
 
     public void requestCapturePermission(final Result result) {
