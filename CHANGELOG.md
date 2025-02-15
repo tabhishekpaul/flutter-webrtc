@@ -1,6 +1,16 @@
 # Changelog
 
 --------------------------------------------
+
+[0.12.9] - 2025-02-13
+
+* [iOS] feat: Add option to start capture without broadcast picker (#1764)
+
+[0.12.8] - 2025-02-07
+
+* [Dart] feat: expose rtc video value (#1754)
+* [Dart] chore: bump webrtc-interface to 1.2.1.
+  
 [0.12.7] - 2025-01-24
 
 * [iOS] More robustness for video renderer. (#1751)
@@ -70,7 +80,6 @@
 * [Web] change VideoElement to HTMLVideoElement.
 * [iOS] added shared singleton for FlutterWebRTCPlugin (#1634)
 * [iOS] Using av samplebuffer for PlatformView (#1635)
-
 
 [0.11.5] - 2024-07-23
 
