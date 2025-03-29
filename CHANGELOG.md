@@ -1,6 +1,29 @@
+
 # Changelog
 
---------------------------------------------
+[0.13.0] - 2025-03-24
+
+* [All] feat: add getBufferedAmount for DataChannel. (#1796)
+* [Windows] fix: fixed non-platform thread call error. (#1795)
+
+[0.12.12+hotfix.1] - 2025-03-12
+
+* [Android] fix: fixed video not rendered after resume from background.
+
+[0.12.12] - 2025-03-09
+
+* [Android] feat: Migrate to the new Surface API. (#1726)
+* [Chore] chore: fix sponsors logo and links.
+
+[0.12.11] - 2025-02-23
+
+* [web] bump version for dart_webrtc.
+* [web] fix: compile error for web with --wasm.
+
+[0.12.10] - 2025-02-18
+
+* [web] bump version for dart_webrtc.
+* [web] fix: compile error for web with --wasm.
 
 [0.12.9] - 2025-02-13
 
