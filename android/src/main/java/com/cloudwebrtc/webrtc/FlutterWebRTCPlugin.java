@@ -193,7 +193,7 @@ public class FlutterWebRTCPlugin implements FlutterPlugin, ActivityAware, EventC
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-
+            methodCallHandler.releaseCameraUtils();
         }
     }
 }

@@ -41,6 +41,7 @@ public class CameraUtils {
   private GetUserMediaImpl getUserMediaImpl;
   private boolean isTorchOn = false;
   private DeviceOrientationManager deviceOrientationManager;
+  
   public CameraUtils(GetUserMediaImpl getUserMediaImpl, Activity activity) {
     this.getUserMediaImpl = getUserMediaImpl;
     this.activity = activity;
@@ -49,6 +50,14 @@ public class CameraUtils {
       this.deviceOrientationManager.start();
     }
   }
+
+  public void release() {
+    if (deviceOrientationManager != null) {
+        deviceOrientationManager.stop();
+        deviceOrientationManager = null;
+    }
+  }
+
 
   public void setFocusMode(MethodCall call, AnyThreadResult result) {
     String trackId = call.argument("trackId");

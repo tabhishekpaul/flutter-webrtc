@@ -159,6 +159,13 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
     }
     mPeerConnectionObservers.clear();
   }
+
+  void releaseCameraUtils() {
+    if(cameraUtils != null){
+      cameraUtils.release();
+    }
+  }
+
   private void initialize(boolean bypassVoiceProcessing, int networkIgnoreMask, boolean forceSWCodec, List<String> forceSWCodecList,
   @Nullable ConstraintsMap androidAudioConfiguration) {
     if (mFactory != null) {
@@ -201,12 +208,13 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
     recordSamplesReadyCallbackAdapter = new RecordSamplesReadyCallbackAdapter();
     playbackSamplesReadyCallbackAdapter = new PlaybackSamplesReadyCallbackAdapter();
 
-    if(bypassVoiceProcessing) {
+    if(!bypassVoiceProcessing) {
+      Log.d("VOICE_PROCESS","PROCESSING STREAM AUDIO");
       audioDeviceModuleBuilder.setUseHardwareAcousticEchoCanceler(false)
                         .setUseHardwareNoiseSuppressor(false)
                         .setUseStereoInput(true)
                         .setUseStereoOutput(true)
-                        .setAudioSource(MediaRecorder.AudioSource.MIC);
+                        .setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION);
     } else {
       boolean useHardwareAudioProcessing = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
       boolean useLowLatency = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
