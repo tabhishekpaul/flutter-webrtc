@@ -209,8 +209,7 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
     recordSamplesReadyCallbackAdapter = new RecordSamplesReadyCallbackAdapter();
     playbackSamplesReadyCallbackAdapter = new PlaybackSamplesReadyCallbackAdapter();
 
-    if(!bypassVoiceProcessing) {
-      Log.d("VOICE_PROCESS","PROCESSING STREAM AUDIO");
+    if(bypassVoiceProcessing) {
       audioDeviceModuleBuilder.setUseHardwareAcousticEchoCanceler(false)
                         .setUseHardwareNoiseSuppressor(false)
                         .setUseStereoInput(true)
@@ -221,7 +220,10 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
       boolean useLowLatency = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
       audioDeviceModuleBuilder.setUseHardwareAcousticEchoCanceler(useHardwareAudioProcessing)
                         .setUseLowLatency(useLowLatency)
-                        .setUseHardwareNoiseSuppressor(useHardwareAudioProcessing);
+                        .setUseStereoInput(true)
+                        .setUseStereoOutput(true)
+                        .setUseHardwareNoiseSuppressor(useHardwareAudioProcessing)
+                        .setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION);
     }
 
     audioDeviceModuleBuilder.setSamplesReadyCallback(recordSamplesReadyCallbackAdapter);
