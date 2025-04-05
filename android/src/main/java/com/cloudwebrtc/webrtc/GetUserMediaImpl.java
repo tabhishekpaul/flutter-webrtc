@@ -567,6 +567,7 @@ public class GetUserMediaImpl {
 
         displayTrack = pcFactory.createVideoTrack(trackId, videoSource);
 
+
         ConstraintsArray audioTracks = new ConstraintsArray();
         ConstraintsArray videoTracks = new ConstraintsArray();
         ConstraintsMap successResult = new ConstraintsMap();
@@ -592,6 +593,28 @@ public class GetUserMediaImpl {
             videoTracks.pushMap(track_);
             mediaStream.addTrack(displayTrack);
         }
+
+        AudioSource audioSource = pcFactory.createAudioSource(new MediaConstraints());
+        AudioTrack audioTrack = pcFactory.createAudioTrack(stateProvider.getNextTrackUUID(), audioSource);
+
+        if (audioTrack != null) {
+            mediaStream.addTrack(audioTrack);
+
+            ConstraintsMap audioTrackMap = new ConstraintsMap();
+            String id = audioTrack.id();
+            String kind = audioTrack.kind();
+
+            audioTrackMap.putBoolean("enabled", audioTrack.enabled());
+            audioTrackMap.putString("id", id);
+            audioTrackMap.putString("kind", kind);
+            audioTrackMap.putString("label", kind);
+            audioTrackMap.putString("readyState", audioTrack.state().toString());
+            audioTrackMap.putBoolean("remote", false);
+
+            audioTracks.pushMap(audioTrackMap);
+            stateProvider.putLocalTrack(id, new LocalAudioTrack(audioTrack));
+        }
+
 
         String streamId = mediaStream.getId();
 
