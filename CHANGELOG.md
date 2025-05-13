@@ -1,7 +1,14 @@
 
 # Changelog
 
-[0.13.1+hotfix.1] - 2024-04-07
+[0.14.0] - 2025-05-06
+
+* [iOS/Android]feat: Media Recorder implementation Android and iOS (#1810)
+* [Wndows] fix: Pickup registrar for plugin by plugin registrar manager (#1752)
+* [Linux] fix: add task runner for linux. (#1821)
+* [iOS/macOS] fix: Fix deadlock when creating a frame cryptor on iOS/macOS.
+
+[0.13.1+hotfix.1] - 2025-04-07
 
 * [Android] fix: Fix `clearAndroidCommunicationDevice` call blocking.
 

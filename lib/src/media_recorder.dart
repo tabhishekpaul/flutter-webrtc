@@ -1,9 +1,17 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:webrtc_interface/webrtc_interface.dart' as rtc;
 
 import '../flutter_webrtc.dart';
+import 'native/media_recorder_impl.dart' show MediaRecorderNative;
 
 class MediaRecorder extends rtc.MediaRecorder {
-  MediaRecorder() : _delegate = mediaRecorder();
+  MediaRecorder({
+    String? albumName,
+  }) : _delegate = (kIsWeb || kIsWasm)
+            ? mediaRecorder()
+            : MediaRecorderNative(albumName: albumName);
+
   final rtc.MediaRecorder _delegate;
 
   @override
