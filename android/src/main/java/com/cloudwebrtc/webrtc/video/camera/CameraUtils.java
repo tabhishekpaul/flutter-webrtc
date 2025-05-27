@@ -47,7 +47,14 @@ public class CameraUtils {
     this.activity = activity;
     if(activity != null) {
       this.deviceOrientationManager = new DeviceOrientationManager(activity, 0);
-      this.deviceOrientationManager.start();
+      // commented out because you cannot register a reciever when the app is terminated
+    // because the activity is null?
+    // this causes the call to break if the app is terminated
+    // the manager seems to end up at handleOrientationChange which does not do
+    // anything at the moment so this should be ok
+
+    // TODO: get a proper fix at some point
+    // this.deviceOrientationManager.start();
     }
   }
 
