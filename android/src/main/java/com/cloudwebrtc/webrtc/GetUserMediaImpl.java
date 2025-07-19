@@ -393,9 +393,9 @@ public class GetUserMediaImpl {
         ConstraintsMap settings = new ConstraintsMap();
         settings.putString("deviceId", deviceId);
         settings.putString("kind", "audioinput");
-        settings.putBoolean("autoGainControl", true);
-        settings.putBoolean("echoCancellation", true);
-        settings.putBoolean("noiseSuppression", true);
+        settings.putBoolean("autoGainControl", false);
+        settings.putBoolean("echoCancellation", false);
+        settings.putBoolean("noiseSuppression", false);
         settings.putInt("channelCount", 1);
         settings.putInt("latency", 0);
         trackParams.putMap("settings", settings.toMap());
