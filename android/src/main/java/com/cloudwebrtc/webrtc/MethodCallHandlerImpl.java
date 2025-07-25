@@ -795,8 +795,13 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
         break;
       case "stopRecordToFile":
         Integer recorderId = call.argument("recorderId");
+<<<<<<< HEAD
         getUserMediaImpl.stopRecording(recorderId);
         result.success(null);
+=======
+        String albumName = call.argument("albumName");
+        getUserMediaImpl.stopRecording(recorderId, albumName, () -> result.success(null));
+>>>>>>> 8e3efdb088f98c09c43bed76f665208472e5fe2e
         break;
       case "captureFrame": {
         String path = call.argument("path");
